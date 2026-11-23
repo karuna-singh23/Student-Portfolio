@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KARUNA SINGH // B.Tech CSE // Celestial Observatory</title>
+  <meta name="description" content="Portfolio of Karuna Singh. B.Tech Computer Science @ Shoolini University. Sarcastic, low-level enthusiast, celestial maximalist.">
+  
+  <!-- Fonts: Vintage Celestial Serif & Crisp Terminal Monospace -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Stippled Cosmic Particle & Radiant Star Canvas -->
+  <canvas id="celestial-canvas"></canvas>
+
+  <!-- Ambient Linocut Stipple Texture Overlay -->
+  <div class="texture-overlay"></div>
+
+  <!-- Cosmic Telemetry Top Bar -->
+  <header class="telemetry-bar">
+    <div class="telemetry-segment">
+      <span class="glyph">✦</span>
+      <span class="label">LOCATION:</span>
+      <span class="val">SHOOLINI UNIV [30°54'N 77°06'E]</span>
+    </div>
+    <div class="telemetry-segment">
+      <span class="glyph">☾</span>
+      <span class="label">ALTITUDE:</span>
+      <span class="val">1,500m HIMALAYAN VOID</span>
+    </div>
+    <div class="telemetry-segment">
+      <span class="glyph">☼</span>
+      <span class="label">EPOCH:</span>
+      <span class="val" id="julian-date">JD 2460637.7</span>
+    </div>
+    <div class="telemetry-segment">
+      <span class="glyph">✹</span>
+      <span class="label">SYS STATUS:</span>
+      <span class="val blink-text">0 CORE DUMPS TODAY (YET)</span>
+    </div>
+    <div class="telemetry-controls">
+      <button id="audio-toggle" class="telemetry-btn" title="Toggle Celestial Sound Generator">
+        <span class="btn-glyph">✧</span> SOUND: <span id="audio-status">MUTED</span>
+      </button>
+      <button id="ascii-mode-btn" class="telemetry-btn" title="Toggle Pure ASCII Mode">
+        <span class="btn-glyph">✢</span> ASCII DENSITY: HIGH
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="observatory-wrapper">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="corner-ornament top-left">╔═══════</div>
+      <div class="corner-ornament top-right">═══════╗</div>
+      <div class="corner-ornament bottom-left">╚═══════</div>
+      <div class="corner-ornament bottom-right">═══════╝</div>
+
+      <div class="celestial-coordinates-badge">
+        <span class="cross-star">✦</span>
+        <span>DECLINATION: +28° 01' 34" // RIGHT ASCENSION: 05h 35m 17s</span>
+        <span class="cross-star">✦</span>
+      </div>
+
+      <!-- Grand ASCII Banner -->
+      <pre class="ascii-banner" aria-label="Karuna Singh">
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║  _  __   _   ____  _   _ _   _   _        ____ ___ _   _  ____ _   _                 ║
+║ | |/ /  / \ |  _ \| | | | \ | | / \      / ___|_ _| \ | |/ ___| | | |                ║
+║ | ' /  / _ \| |_) | | | |  \| |/ _ \     \___ \| ||  \| | |  _| |_| |                ║
+║ | . \ / ___ \  _ &lt;| |_| | |\  / ___ \     ___) | || |\  | |_| |  _  |                ║
+║ |_|\_/_/   \_\_| \_\\___/|_| \_/_/   \_\   |____/___|_| \_|\____|_| |_|                ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+      </pre>
+
+      <div class="hero-tagline">
+        <h1 class="hero-title">KARUNA SINGH</h1>
+        <p class="hero-subtitle">
+          B.TECH COMPUTER SCIENCE & ENGINEERING <span>//</span> SHOOLINI UNIVERSITY <span>//</span> CLASS OF 2029
+        </p>
+        <p class="hero-sarcasm">
+          "Yes, I am a first-year student. Yes, I already know your enterprise software stack is held together by three bash scripts, prayer, and an unpaid intern. I write low-level code so my silicon suffers as much as I do."
+        </p>
+      </div>
+
+      <!-- Quick Telemetry Chips -->
+      <div class="quick-status-grid">
+        <div class="status-cell">
+          <div class="cell-head">FAVORITE C TRAGEDY</div>
+          <div class="cell-body">Segmentation fault (core dumped)</div>
+        </div>
+        <div class="status-cell">
+          <div class="cell-head">COMMITS MOTTO</div>
+          <div class="cell-body">git commit -m "fixed for real this time"</div>
+        </div>
+        <div class="status-cell">
+          <div class="cell-head">CURRENT FOCUS</div>
+          <div class="cell-body">Surviving Pointer Arithmetic & Himalayan Wi-Fi</div>
+        </div>
+        <div class="status-cell">
+          <div class="cell-head">PHILOSOPHY</div>
+          <div class="cell-body">If it compiles on the first try, something is horribly wrong.</div>
+        </div>
+      </div>
+
+      <!-- Navigation Deck -->
+      <div class="nav-deck">
+        <a href="#entity" class="deck-btn">
+          <span class="btn-bracket">[</span> ✦ GLASS STAR ENTITY <span class="btn-bracket">]</span>
+        </a>
+        <a href="#projects" class="deck-btn">
+          <span class="btn-bracket">[</span> ✦ EXPLORE SYSTEMS <span class="btn-bracket">]</span>
+        </a>
+        <a href="#skills" class="deck-btn">
+          <span class="btn-bracket">[</span> ☾ SKILL CONSTELLATION <span class="btn-bracket">]</span>
+        </a>
+        <a href="#manifesto" class="deck-btn">
+          <span class="btn-bracket">[</span> ☼ THE MANIFESTO <span class="btn-bracket">]</span>
+        </a>
+        <a href="#terminal" class="deck-btn highlight-btn">
+          <span class="btn-bracket">[</span> ✛ TERMINAL CONSOLE <span class="btn-bracket">]</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Glass Star Entity Showcase Section -->
+    <section id="entity" class="section-card entity-card">
+      <div class="card-header">
+        <div class="card-tag">SPECIMEN_01 // CHROMATIC ARTIFACT // RUNTIME ENTITY</div>
+        <h2 class="card-title">GLASS STAR ENTITY // AVATAR OF THE VOID</h2>
+        <p class="section-desc">Recruiters asked for a headshot. I offered a 3D refractive liquid chrome star anomaly. Zero emotional baggage, 100% specular reflectance.</p>
+      </div>
+
+      <div class="entity-display-grid">
+        <div class="entity-image-frame">
+          <div class="hud-reticle tl">┌</div>
+          <div class="hud-reticle tr">┐</div>
+          <div class="hud-reticle bl">└</div>
+          <div class="hud-reticle br">┘</div>
+          <div class="entity-target-badge">✦ TARGET LOCK: ACTIVE // MAG 0.1</div>
+          <img src="assets/glass-star-entity.jpg" alt="Glass Star Entity - Liquid Chrome Celestial Artifact" class="entity-image" id="glass-star-img">
+          <div class="entity-glare-effect" id="star-glare"></div>
+        </div>
+
+        <div class="entity-specs-panel">
+          <div class="hud-header">
+            <span class="hud-title">STRUCTURE BREAKDOWN // TELEMETRY</span>
+            <span class="hud-id">ID: STAR_REFRACT_4X</span>
+          </div>
+
+          <div class="hud-rows">
+            <div class="hud-row">
+              <span class="hud-k">OBJECT:</span>
+              <span class="hud-v">Elongated Star Entity</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-k">MATERIAL:</span>
+              <span class="hud-v">Liquid Glass / Chrome</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-k">CONTRAST:</span>
+              <span class="hud-v">High // Deep Black Void</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-k">STYLE:</span>
+              <span class="hud-v">Minimalist Futuristic Celestial</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-k">SURFACE:</span>
+              <span class="hud-v">Ultra Smooth // Transparent & Refractive</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-k">LIGHTING:</span>
+              <span class="hud-v">Soft Neon Edge Glow // Highly Polished</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-k">REFRACTION:</span>
+              <span class="hud-v">Strong Light Bending // Subtle Caustics</span>
+            </div>
+            <div class="hud-row">
+              <span class="hud-k">FORM:</span>
+              <span class="hud-v">Sharp Stretched Points // Symmetrical 3D</span>
+            </div>
+          </div>
+
+          <div class="entity-sarcasm-callout">
+            <span class="callout-glyph">✦</span>
+            <div class="callout-body">
+              <strong>Why This Exists:</strong> A conventional photo captures a mortal struggling through first-year computer science. A liquid chrome star captures the exact state of mind required to debug C pointer arithmetic at 3:00 AM without crying.
+            </div>
+          </div>
+
+          <div class="entity-controls">
+            <button id="pulse-refraction-btn" class="action-btn">
+              <span class="btn-glyph">✧</span> ENGAGE CHROME PULSE
+            </button>
+            <button id="wireframe-hud-btn" class="action-btn">
+              <span class="btn-glyph">✢</span> STREAM ENTITY HUD
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Celestial Astrolabe / Manifesto Section -->
+    <section id="manifesto" class="section-card manifesto-card">
+      <div class="card-header">
+        <div class="card-tag">ASTROLABE RECORD // DEPT_CS_01</div>
+        <h2 class="card-title">WHY THIS DOES NOT LOOK LIKE A COOKIE-CUTTER PORTFOLIO</h2>
+      </div>
+
+      <div class="manifesto-grid">
+        <div class="manifesto-ascii-col">
+          <pre class="ascii-art-block" id="armillary-ascii">
+             .----------------.
+            /   .-''''''-.     \
+           /  .'   __     '.    \
+          |  /   .'  '.     \    |
+      ----+-|---|--☼---|-----|---+----
+          |  \   '.__.'     /    |
+           \  '.          .'    /
+            \   '-......-'     /
+             '----------------'
+           [ CELESTIAL HORIZON ]
+          RA: 05h 35m | DEC: +09°
+          </pre>
+          <div class="ascii-caption">FIG 1.1: CELESTIAL SPHERE PROJECTION // NO FLOATING CARTOON BADGES ALLOWED</div>
+        </div>
+
+        <div class="manifesto-text-col">
+          <p class="snappy-para">
+            Most student portfolios are a predictable crime against design: a blinding white background, three pastel cards, a progress bar claiming "98% HTML proficiency" (as if closing tags is an Olympic sport), and five floating rocket emojis.
+          </p>
+          <p class="snappy-para">
+            I refuse. We are sending electrical currents through etched sand to simulate logic in a cold indifferent universe. The least we can do is make it look like an occult astronomical observatory.
+          </p>
+          <div class="snappy-bullets">
+            <div class="bullet-item">
+              <span class="bullet-glyph">✦</span>
+              <div>
+                <strong>Zero Framework Bloat:</strong> No 45MB bundle just to render a paragraph of text. Pure semantic structure, procedural canvas, and mathematical stippling.
+              </div>
+            </div>
+            <div class="bullet-item">
+              <span class="bullet-glyph">✦</span>
+              <div>
+                <strong>Ruthless Craft:</strong> First year at Shoolini University doesn't mean waiting until graduation to write code with character. C, Python, and raw problem solving come first.
+              </div>
+            </div>
+            <div class="bullet-item">
+              <span class="bullet-glyph">✦</span>
+              <div>
+                <strong>Zero Emojis:</strong> Only pure typographic glyphs, ASCII diagrams, and starlight. Your eyes will thank me.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section: "The Holy Trinity of CS Freshmen" -->
+    <section id="projects" class="section-card">
+      <div class="card-header">
+        <div class="card-tag">SYSTEMS REPOSITORY // FEATURE/STUDENT-DETAILS</div>
+        <h2 class="card-title">THE HOLY TRINITY OF CODE</h2>
+        <p class="section-desc">Every Computer Science student is obligated by cosmic law to build these three systems. The difference? Mine won't crash when you breathe near the input buffer.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: Student Management System -->
+        <article class="project-card" data-project="sms">
+          <div class="project-top">
+            <span class="proj-id">SYS.01 // PYTHON</span>
+            <span class="proj-badge">RELATIONAL DATA</span>
+          </div>
+
+          <div class="project-ascii-preview">
+<pre>
+┌─────────────────────────────────┐
+│ [TABLE: STUDENTS]               │
+│ ├─ ID: HASH_2025_001            │
+│ ├─ NAME: "Karuna Singh"         │
+│ ├─ GPA:  3.98 // OVERFLOW       │
+│ └─ STATUS: COMPILING COGNITION  │
+└─────────────────────────────────┘
+</pre>
+          </div>
+
+          <h3 class="proj-title">Student Management System</h3>
+          <p class="proj-sarcasm">
+            "Because multi-million dollar educational institutions still manage student records using corrupted CSV files on a shared flash drive. Built to bring sanity to academic chaos."
+          </p>
+
+          <div class="proj-specs">
+            <div class="spec-row">
+              <span class="spec-k">LANGUAGE:</span>
+              <span class="spec-v">Python 3.12</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k">STORAGE:</span>
+              <span class="spec-v">Structured Schema / In-Memory Index</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k">RELIABILITY:</span>
+              <span class="spec-v">Zero unhandled exceptions</span>
+            </div>
+          </div>
+
+          <div class="proj-actions">
+            <button class="action-btn open-modal-btn" data-modal="sms">
+              <span class="btn-glyph">✦</span> TEST REPL SIMULATION
+            </button>
+            <a href="https://github.com/karuna-singh23/Student-Portfolio/tree/feature/student-details" target="_blank" rel="noopener" class="action-btn link-btn">
+              <span>SOURCE</span> ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Library Management System -->
+        <article class="project-card" data-project="lms">
+          <div class="project-top">
+            <span class="proj-id">SYS.02 // C PROGRAMMING</span>
+            <span class="proj-badge">MANUAL MEMORY ALLOC</span>
+          </div>
+
+          <div class="project-ascii-preview">
+<pre>
+┌─────────────────────────────────┐
+│ [HEAP MEMORY TRACE: BOOK_NODE]  │
+│ [0x7FFEE4A0] ──> [0x7FFEE4C0]   │
+│  ISBN: 978-0131103627           │
+│  TITLE: "The C Programming Lg"  │
+│  STATUS: NEVER RETURNED         │
+└─────────────────────────────────┘
+</pre>
+          </div>
+
+          <h3 class="proj-title">Library Management System</h3>
+          <p class="proj-sarcasm">
+            "Tracking overdue physical books in an era where everyone reads stack traces on their phone. Written in C because garbage collection is for the faint of heart. Zero leaks, 100% pointer anxiety."
+          </p>
+
+          <div class="proj-specs">
+            <div class="spec-row">
+              <span class="spec-k">LANGUAGE:</span>
+              <span class="spec-v">Pure ANSI C (C99)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k">ALGORITHMS:</span>
+              <span class="spec-v">Binary Search & Linked Catalog</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k">VALGRIND:</span>
+              <span class="spec-v">0 bytes definitely lost</span>
+            </div>
+          </div>
+
+          <div class="proj-actions">
+            <button class="action-btn open-modal-btn" data-modal="lms">
+              <span class="btn-glyph">✦</span> INSPECT MEMORY ALLOC
+            </button>
+            <a href="https://github.com/karuna-singh23/Student-Portfolio/tree/feature/student-details" target="_blank" rel="noopener" class="action-btn link-btn">
+              <span>SOURCE</span> ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Weather Forecast Application -->
+        <article class="project-card" data-project="weather">
+          <div class="project-top">
+            <span class="proj-id">SYS.03 // TELEMETRY & HTTP</span>
+            <span class="proj-badge">TROPOSPHERIC SENSORS</span>
+          </div>
+
+          <div class="project-ascii-preview">
+<pre>
+┌─────────────────────────────────┐
+│ [BAROMETRIC SCAN: SOLAN PEAKS]  │
+│   ▲  1013 hPa                   │
+│  ─┼─────────●───────            │
+│   ▼  HUMIDITY: 89% [MIST]       │
+│   STATUS: COLD & GLOOMY         │
+└─────────────────────────────────┘
+</pre>
+          </div>
+
+          <h3 class="proj-title">Weather Forecast Application</h3>
+          <p class="proj-sarcasm">
+            "An application that confirms what looking out of a hostel window already proves: it is freezing, damp, and there is a 99% probability you forgot your umbrella. Ingests atmospheric telemetry with zero lag."
+          </p>
+
+          <div class="proj-specs">
+            <div class="spec-row">
+              <span class="spec-k">STACK:</span>
+              <span class="spec-v">Python / REST Ingestion</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k">METRICS:</span>
+              <span class="spec-v">Barometric, UV, Dew Point</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-k">ACCURACY:</span>
+              <span class="spec-v">Higher than local intuition</span>
+            </div>
+          </div>
+
+          <div class="proj-actions">
+            <button class="action-btn open-modal-btn" data-modal="weather">
+              <span class="btn-glyph">✦</span> LIVE RADAR SIMULATOR
+            </button>
+            <a href="https://github.com/karuna-singh23/Student-Portfolio/tree/feature/student-details" target="_blank" rel="noopener" class="action-btn link-btn">
+              <span>SOURCE</span> ↗
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Technical Skills Section: Celestial Constellation Matrix -->
+    <section id="skills" class="section-card">
+      <div class="card-header">
+        <div class="card-tag">CELESTIAL EPHEMERIS // ARSENAL</div>
+        <h2 class="card-title">SKILL CONSTELLATION MATRIX</h2>
+        <p class="section-desc">Honest, unvarnished proficiencies. No self-delusional 100% bars. Just what actually works when the terminal cursor starts blinking at 2:00 AM.</p>
+      </div>
+
+      <div class="skills-matrix">
+
+        <!-- Skill 1 -->
+        <div class="skill-node">
+          <div class="node-header">
+            <span class="node-glyph">☿</span>
+            <span class="node-name">PYTHON</span>
+            <span class="node-coords">MAG 1.2 // DEC +19°</span>
+          </div>
+          <div class="skill-meter">
+            <div class="meter-bar" style="width: 88%;"></div>
+          </div>
+          <div class="skill-meter-ascii">[████████░░] 88% FLUENT</div>
+          <p class="skill-sarcastic-note">
+            Clean indentation, list comprehensions, and data wrangling. I love Python until I spend 40 minutes finding out which of my 14 virtual environments contains the single package I need.
+          </p>
+          <div class="skill-tags">
+            <span>Automation</span> <span>Data Structures</span> <span>CLI Tooling</span>
+          </div>
+        </div>
+
+        <!-- Skill 2 -->
+        <div class="skill-node">
+          <div class="node-header">
+            <span class="node-glyph">♄</span>
+            <span class="node-name">C PROGRAMMING</span>
+            <span class="node-coords">MAG 0.8 // DEC +42°</span>
+          </div>
+          <div class="skill-meter">
+            <div class="meter-bar" style="width: 82%;"></div>
+          </div>
+          <div class="skill-meter-ascii">[████████░░] 82% LOW-LEVEL</div>
+          <p class="skill-sarcastic-note">
+            Pointers, structs, manual malloc/free, and stack frames. If God didn't want us to dereference null pointers, He wouldn't have given us 16 gigabytes of address space to accidentally overwrite.
+          </p>
+          <div class="skill-tags">
+            <span>Pointers</span> <span>Memory Management</span> <span>Data Layout</span>
+          </div>
+        </div>
+
+        <!-- Skill 3 -->
+        <div class="skill-node">
+          <div class="node-header">
+            <span class="node-glyph">♀</span>
+            <span class="node-name">HTML & SEMANTICS</span>
+            <span class="node-coords">MAG 2.1 // DEC -08°</span>
+          </div>
+          <div class="skill-meter">
+            <div class="meter-bar" style="width: 90%;"></div>
+          </div>
+          <div class="skill-meter-ascii">[█████████░] 90% SEMANTIC</div>
+          <p class="skill-sarcastic-note">
+            Real semantic tags over infinite `&lt;div&gt;` nests. I build pages that screen readers can actually parse without experiencing digital vertigo.
+          </p>
+          <div class="skill-tags">
+            <span>Accessibility</span> <span>Semantic DOM</span> <span>Maximalist Canvas</span>
+          </div>
+        </div>
+
+        <!-- Skill 4 -->
+        <div class="skill-node">
+          <div class="node-header">
+            <span class="node-glyph">♃</span>
+            <span class="node-name">GIT & GITHUB</span>
+            <span class="node-coords">MAG 1.4 // DEC +31°</span>
+          </div>
+          <div class="skill-meter">
+            <div class="meter-bar" style="width: 85%;"></div>
+          </div>
+          <div class="skill-meter-ascii">[████████░░] 85% REBASE</div>
+          <p class="skill-sarcastic-note">
+            Branching, merges, stash, and cherry-picking. I treat `git push --force` with the same sacred terror as nuclear launch codes.
+          </p>
+          <div class="skill-tags">
+            <span>Branch Flow</span> <span>Conflict Resolution</span> <span>Remote Repos</span>
+          </div>
+        </div>
+
+        <!-- Skill 5 -->
+        <div class="skill-node">
+          <div class="node-header">
+            <span class="node-glyph">☼</span>
+            <span class="node-name">PROBLEM SOLVING</span>
+            <span class="node-coords">MAG 0.1 // POLARIS</span>
+          </div>
+          <div class="skill-meter">
+            <div class="meter-bar" style="width: 94%;"></div>
+          </div>
+          <div class="skill-meter-ascii">[█████████░] 94% PERSISTENT</div>
+          <p class="skill-sarcastic-note">
+            Breaking complex, horrifying computational deadlocks down into trivial equations. If code doesn't work, I don't give up—I stare at it until it feels awkward and starts functioning.
+          </p>
+          <div class="skill-tags">
+            <span>Algorithmic Logic</span> <span>Decomposition</span> <span>Root-Cause Tracing</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education & Origin Section -->
+    <section class="section-card education-card">
+      <div class="card-header">
+        <div class="card-tag">TERRESTRIAL ANCHOR // 2025–2029</div>
+        <h2 class="card-title">ACADEMIC TRAJECTORY</h2>
+      </div>
+
+      <div class="edu-grid">
+        <div class="edu-col main-info">
+          <div class="edu-degree">B.TECH IN COMPUTER SCIENCE & ENGINEERING</div>
+          <div class="edu-institution">Shoolini University of Biotechnology and Management Sciences</div>
+          <div class="edu-timeline">TIMELINE: 2025 — 2029 [CURRENTLY YEAR 01]</div>
+          <p class="edu-desc">
+            Nestled in the foothills of Himachal Pradesh. High altitude, thin mountain air, and low latency to the stars. Currently mastering core programming paradigms, discrete computational mathematics, and the art of maintaining focus when the temperature drops to single digits.
+          </p>
+        </div>
+
+        <div class="edu-col telemetry-panel">
+          <div class="panel-heading">CELESTIAL OBSERVATION LOG</div>
+          <ul class="panel-list">
+            <li><strong>SEMESTER GOAL:</strong> Write pure C until GCC stops emitting warnings.</li>
+            <li><strong>REPOS CREATED:</strong> Student-Portfolio / feature/student-details.</li>
+            <li><strong>SLEEP DEFICIT:</strong> Standard distribution, mean 5.2 hrs.</li>
+            <li><strong>CAFFEINE COEFFICIENT:</strong> 1.732 (Approaching critical density).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Retro-Futuristic Terminal Emulator -->
+    <section id="terminal" class="section-card terminal-card">
+      <div class="terminal-bar-top">
+        <div class="terminal-status-dots">
+          <span class="term-glyph">✦</span>
+          <span class="term-title">karuna@shoolini-observatory:~ (tty0)</span>
+        </div>
+        <div class="term-hints">Type 'help' for cosmic commands</div>
+      </div>
+
+      <div class="terminal-body" id="term-output">
+        <div class="term-line welcome-line">
+          CELESTIAL KERNEL v2.025-ARCH // SHOOLINI UNIVERSITY OBSERVATORY
+        </div>
+        <div class="term-line">
+          Type <span class="term-highlight">help</span> to view all commands, or click any quick-run pill below.
+        </div>
+      </div>
+
+      <!-- Quick command shortcuts -->
+      <div class="terminal-shortcuts">
+        <button class="term-chip" data-cmd="star">star entity</button>
+        <button class="term-chip" data-cmd="about">cat about.txt</button>
+        <button class="term-chip" data-cmd="skills">cat skills.txt</button>
+        <button class="term-chip" data-cmd="projects">cat projects.txt</button>
+        <button class="term-chip" data-cmd="education">cat education.txt</button>
+        <button class="term-chip" data-cmd="roast">roast me</button>
+        <button class="term-chip" data-cmd="astrolabe">astrolabe</button>
+        <button class="term-chip" data-cmd="clear">clear</button>
+      </div>
+
+      <div class="terminal-prompt-line">
+        <span class="prompt-text">karuna@observatory:~$</span>
+        <input type="text" id="term-input" autocomplete="off" spellcheck="false" placeholder="type command (e.g. 'help', 'roast', 'matrix')...">
+      </div>
+    </section>
+
+    <!-- Celestial Linocut Footer -->
+    <footer class="observatory-footer">
+      <div class="footer-ascii">
+        <pre>
+   .    *        .     .       .        *     .     .
+     *       .  ☾   ✦  KARUNA SINGH  ✦  ☽  .       *   .
+.        *     .      SHOOLINI UNIV      .     *       .
+        </pre>
+      </div>
+      <p class="footer-note">
+        DESIGNED WITH MAXIMALIST CELESTIAL CRAFT. NO EMOJIS HARMED IN THE PRODUCTION OF THIS REPOSITORY.
+      </p>
+      <div class="footer-links">
+        <a href="https://github.com/karuna-singh23/Student-Portfolio/tree/feature/student-details" target="_blank" rel="noopener" class="footer-link">
+          GITHUB // KARUNA-SINGH23
+        </a>
+        <span class="separator">✦</span>
+        <button id="copy-coords-btn" class="footer-btn">
+          COPY OBS COORDINATES
+        </button>
+        <span class="separator">✦</span>
+        <span class="footer-text">B.TECH CSE 2025–2029</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Modal for Project Deep Dive / Simulation -->
+  <div id="project-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-top">
+        <div class="modal-title-wrap">
+          <span class="modal-glyph">✦</span>
+          <span id="modal-project-title" class="modal-title">PROJECT TELEMETRY</span>
+        </div>
+        <button id="modal-close" class="modal-close-btn" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-content" id="modal-body">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Scripts -->
+  <script src="canvas.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
